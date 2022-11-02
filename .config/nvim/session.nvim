@@ -41,20 +41,20 @@ badd +1 ~/Code/Arquimedia/backend/tests/factories.py
 badd +1 ~/Code/Arquimedia/backend/requirements.txt
 badd +1 ~/Code/Arquimedia/arquimedia/backend/api/models.py
 badd +33 ~/Code/Arquimedia/arquimedia/backend/users/models.py
-badd +1 init.lua
+badd +15 init.lua
 badd +1 session.nvim
+badd +1 NvimTree_1
+badd +7 lua/configs/plugins/discord-presence.lua
+badd +121 lua/configs/plugins-setup.lua
 argglobal
 %argdel
-edit session.nvim
+edit lua/configs/plugins-setup.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
+1wincmd h
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -65,13 +65,30 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 57 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 57 + 86) / 173)
-exe 'vert 3resize ' . ((&columns * 57 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 125 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 65 + 95) / 191)
+argglobal
+balt init.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 121 - ((40 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 121
+normal! 027|
+wincmd w
 argglobal
 enew
-file NvimTree_1
-balt session.nvim
+balt lua/configs/plugins-setup.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -81,50 +98,9 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 wincmd w
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 21) / 42)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("init.lua", ":p")) | buffer init.lua | else | edit init.lua | endif
-if &buftype ==# 'terminal'
-  silent file init.lua
-endif
-balt ~/Code/Arquimedia/arquimedia/backend/users/models.py
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 21) / 42)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 57 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 57 + 86) / 173)
-exe 'vert 3resize ' . ((&columns * 57 + 86) / 173)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 125 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 65 + 95) / 191)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

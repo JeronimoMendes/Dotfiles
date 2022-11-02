@@ -104,7 +104,7 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
 	-- discord integration
-	use("andweeb/presence.nvim")
+	-- use("andweeb/presence.nvim")
 
 	-- workspaces
 	use("natecraddock/workspaces.nvim")
@@ -117,6 +117,9 @@ return packer.startup(function(use)
 
 	-- git client
 	use("tpope/vim-fugitive")
+
+	-- View symbols on file
+	use("liuchengxu/vista.vim")
 
 	if packer_bootstrap then
 		require("packer").sync()

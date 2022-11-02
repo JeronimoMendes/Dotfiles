@@ -211,11 +211,6 @@ _G.packer_plugins = {
     path = "/Users/jeronimo/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["presence.nvim"] = {
-    loaded = true,
-    path = "/Users/jeronimo/.local/share/nvim/site/pack/packer/start/presence.nvim",
-    url = "https://github.com/andweeb/presence.nvim"
-  },
   ["sessions.nvim"] = {
     loaded = true,
     path = "/Users/jeronimo/.local/share/nvim/site/pack/packer/start/sessions.nvim",
@@ -250,6 +245,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jeronimo/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  ["vista.vim"] = {
+    loaded = true,
+    path = "/Users/jeronimo/.local/share/nvim/site/pack/packer/start/vista.vim",
+    url = "https://github.com/liuchengxu/vista.vim"
   },
   ["workspaces.nvim"] = {
     loaded = true,
