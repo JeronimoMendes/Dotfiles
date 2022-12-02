@@ -41,11 +41,14 @@ badd +1 ~/Code/Arquimedia/backend/tests/factories.py
 badd +1 ~/Code/Arquimedia/backend/requirements.txt
 badd +1 ~/Code/Arquimedia/arquimedia/backend/api/models.py
 badd +33 ~/Code/Arquimedia/arquimedia/backend/users/models.py
-badd +15 init.lua
+badd +23 init.lua
 badd +1 session.nvim
-badd +1 NvimTree_1
 badd +7 lua/configs/plugins/discord-presence.lua
-badd +121 lua/configs/plugins-setup.lua
+badd +1 lua/configs/plugins-setup.lua
+badd +8 ~/.config/nvim/lua/configs/plugins/bufferline.lua
+badd +1 lua/configs/core/keymaps.lua
+badd +85 lua/configs/plugins/lsp/lspconfig.lua
+badd +11 ~/.config/nvim/lua/configs/plugins/rust-analizer.lua
 argglobal
 %argdel
 edit lua/configs/plugins-setup.lua
@@ -65,10 +68,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 125 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 65 + 95) / 191)
+exe 'vert 1resize ' . ((&columns * 57 + 48) / 96)
+exe 'vert 2resize ' . ((&columns * 38 + 48) / 96)
 argglobal
-balt init.lua
+balt lua/configs/plugins/lsp/lspconfig.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -79,16 +82,23 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 121 - ((40 * winheight(0) + 23) / 46)
+let s:l = 70 - ((19 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 121
-normal! 027|
+keepjumps 70
+let s:c = 54 - ((50 * winwidth(0) + 28) / 57)
+if s:c > 0
+  exe 'normal! ' . s:c . '|zs' . 54 . '|'
+else
+  normal! 054|
+endif
 wincmd w
 argglobal
-enew
-balt lua/configs/plugins-setup.lua
+if bufexists(fnamemodify("lua/configs/plugins/lsp/lspconfig.lua", ":p")) | buffer lua/configs/plugins/lsp/lspconfig.lua | else | edit lua/configs/plugins/lsp/lspconfig.lua | endif
+if &buftype ==# 'terminal'
+  silent file lua/configs/plugins/lsp/lspconfig.lua
+endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -97,10 +107,18 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 125 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 65 + 95) / 191)
+exe 'vert 1resize ' . ((&columns * 57 + 48) / 96)
+exe 'vert 2resize ' . ((&columns * 38 + 48) / 96)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

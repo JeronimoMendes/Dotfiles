@@ -67,6 +67,8 @@ return packer.startup(function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
+	use("hrsh7th/cmp-nvim-lua") -- source for nvim lua
+	use("hrsh7th/cmp-nvim-lsp-signature-help") -- source for nvim lsp signature help
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
@@ -120,6 +122,14 @@ return packer.startup(function(use)
 
 	-- View symbols on file
 	use("liuchengxu/vista.vim")
+
+	-- ThePrimeagen game
+	use("ThePrimeagen/vim-be-good")
+
+	-- tabs
+	use("akinsho/bufferline.nvim")
+
+	use("simrat39/rust-tools.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
