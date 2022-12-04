@@ -1,0 +1,13 @@
+#! /bin/bash
+
+# This script removes dangling docker images and volumes
+
+echo "Removing dangling docker images and volumes"
+
+# Remove dangling images
+docker rmi $(docker images -aq --filter dangling=true)
+
+# Remove dangling volumes
+docker volume rm $(docker volume ls -qf dangling=true)
+
+echo "Done!"
